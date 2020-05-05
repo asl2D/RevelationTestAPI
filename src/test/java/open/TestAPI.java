@@ -19,9 +19,7 @@ public class TestAPI {
 
     @Test
     public void getUserList() {
-        final String userListRootPath = "data";
-        List<String> userFields = Arrays.asList("id", "email", "first_name", "last_name", "avatar");
-
+        final String USER_LIST_ROOT_PATH = "data";
         String jsonUserList = given().
                 expect().
                 statusCode(OK.getResponseCode()).
@@ -29,21 +27,21 @@ public class TestAPI {
                 get(GET_USER_LIST.getRequest()).
                 asString();
         JsonPath jp = new JsonPath(jsonUserList);
-        jp.setRootPath(userListRootPath);
+        jp.setRootPath(USER_LIST_ROOT_PATH);
         List<Map<String, String>> users = jp.get();
 
         for (Map user : users) {
-            for (String field : userFields)
-                assertNotNull(user.get(field));
+                assertNotNull(user.get("id"));
+                assertNotNull(user.get("email"));
+                assertNotNull(user.get("first_name"));
+                assertNotNull(user.get("last_name"));
+                assertNotNull(user.get("avatar"));
         }
     }
 
     @Test
     public void postNewUser() {
-        String userName = "neo",
-                userJob = "chosen";
-
-        User user = new User(userName, userJob);
+        User user = new User();
         given().
                 contentType("application/json").
                 body(user).
@@ -51,7 +49,7 @@ public class TestAPI {
                 post(POST_NEW_USER.getRequest()).
                 then().
                 statusCode(CREATED.getResponseCode())
-                .body("name", equalTo(userName),
-                        "job", equalTo(userJob));
+                .body("name", equalTo(user.getName()),
+                        "job", equalTo(user.getJob()));
     }
 }

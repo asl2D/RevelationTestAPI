@@ -1,16 +1,8 @@
 package open;
 
 public class User {
-    private String name;
-    private String job;
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setJob(String job) {
-        this.job = job;
-    }
+    private final String name = "neo";
+    private final String job = "chosen";
 
     public String getName() {
         return name;
@@ -18,10 +10,5 @@ public class User {
 
     public String getJob() {
         return job;
-    }
-
-    public User(String name, String job) {
-        this.name = name;
-        this.job = job;
     }
 }
