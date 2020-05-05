@@ -1,0 +1,20 @@
+plugins {
+    id 'java'
+}
+
+group = "Revelation"
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile("org.testng:testng:7.1.0")
+    implementation("io.rest-assured:rest-assured:4.3.0")
+    implementation("com.fasterxml.jackson.core:jackson-core:2.10.1")
+    implementation("com.fasterxml.jackson.core:jackson-databind:2.9.9.3")
+}
+
+test {
+    useTestNG()
+}
