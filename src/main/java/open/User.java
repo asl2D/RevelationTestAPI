@@ -1,8 +1,8 @@
 package open;
 
 public class User {
-    private final String name = "neo";
-    private final String job = "chosen";
+    private String name;
+    private String job;
 
     public String getName() {
         return name;
@@ -10,5 +10,10 @@ public class User {
 
     public String getJob() {
         return job;
+    }
+
+    public User(String name, String job) {
+        this.name = name;
+        this.job = job;
     }
 }

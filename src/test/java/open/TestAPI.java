@@ -3,7 +3,6 @@ package open;
 import io.restassured.path.json.JsonPath;
 import org.testng.annotations.Test;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -31,17 +30,17 @@ public class TestAPI {
         List<Map<String, String>> users = jp.get();
 
         for (Map user : users) {
-                assertNotNull(user.get("id"));
-                assertNotNull(user.get("email"));
-                assertNotNull(user.get("first_name"));
-                assertNotNull(user.get("last_name"));
-                assertNotNull(user.get("avatar"));
+            assertNotNull(user.get("id"));
+            assertNotNull(user.get("email"));
+            assertNotNull(user.get("first_name"));
+            assertNotNull(user.get("last_name"));
+            assertNotNull(user.get("avatar"));
         }
     }
 
     @Test
     public void postNewUser() {
-        User user = new User();
+        User user = new User(TestData.getUserName(), TestData.getUserJob());
         given().
                 contentType("application/json").
                 body(user).
